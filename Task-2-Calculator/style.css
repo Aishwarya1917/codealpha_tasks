@@ -1,0 +1,475 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    font-family: 'Inter', sans-serif;
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.18), transparent 30%),
+        linear-gradient(135deg, #020617, #0f172a 50%, #020617);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   CALCULATOR
+========================= */
+
+.calculator {
+    position: relative;
+
+   
+    width: 340px;
+
+    padding: 24px;
+
+    border-radius: 30px;
+
+    background: rgba(15, 23, 42, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(59, 130, 246, 0.05),
+        inset 0 1px 1px rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(20px);
+
+    animation: calculatorEnter 0.6s ease;
+}
+
+
+/* Small shine at the top */
+
+.calculator::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+
+    width: 76%;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+}
+
+
+/* =========================
+   DISPLAY
+========================= */
+
+.display {
+    position: relative;
+
+    width: 100%;
+    min-height: 135px;
+
+    padding: 22px;
+
+    margin-bottom: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.98),
+            rgba(2, 6, 23, 0.98)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    box-shadow:
+        inset 0 5px 18px rgba(0, 0, 0, 0.35),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.03),
+        0 8px 20px rgba(0, 0, 0, 0.2);
+
+    overflow: hidden;
+}
+
+
+/* Display glow */
+
+.display::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -40px;
+    top: -40px;
+
+    background: rgba(59, 130, 246, 0.08);
+
+    filter: blur(30px);
+
+    border-radius: 50%;
+}
+
+
+/* Previous value */
+
+#previous-display {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    min-height: 24px;
+
+    margin-bottom: 8px;
+
+    color: #64748b;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    text-align: right;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+}
+
+
+/* Current value */
+
+#current-display {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+
+    color: #f8fafc;
+
+    font-size: 36px;
+    font-weight: 600;
+
+    letter-spacing: -1px;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.04);
+}
+
+#current-display::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================
+   BUTTON GRID
+========================= */
+
+.buttons {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    position: relative;
+
+  
+    height: 60px;
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+
+    border-radius: 19px;
+
+    background: linear-gradient(
+        145deg,
+        #334155,
+        #263244
+    );
+
+    color: #f8fafc;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 12px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+/* Top shine */
+
+button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 1px;
+    left: 15%;
+
+    width: 70%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+}
+
+
+/* Hover */
+
+button:hover {
+    transform: translateY(-3px);
+
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 12px 22px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+
+/* Click */
+
+button:active {
+    transform: scale(0.93) translateY(1px);
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================
+   OPERATORS
+========================= */
+
+.operator {
+    background: linear-gradient(
+        145deg,
+        #3b82f6,
+        #1d4ed8
+    );
+
+    box-shadow:
+        0 7px 18px rgba(37, 99, 235, 0.22);
+}
+
+.operator:hover {
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.35);
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+.clear {
+    background: linear-gradient(
+        145deg,
+        #ef4444,
+        #b91c1c
+    );
+
+    box-shadow:
+        0 7px 18px rgba(220, 38, 38, 0.2);
+}
+
+.clear:hover {
+    box-shadow:
+        0 12px 25px rgba(220, 38, 38, 0.3);
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+.delete {
+    background: linear-gradient(
+        145deg,
+        #f59e0b,
+        #b45309
+    );
+
+    box-shadow:
+        0 7px 18px rgba(217, 119, 6, 0.2);
+}
+
+.delete:hover {
+    box-shadow:
+        0 12px 25px rgba(217, 119, 6, 0.3);
+}
+
+
+/* =========================
+   EQUALS
+========================= */
+
+.equals {
+    background: linear-gradient(
+        145deg,
+        #22c55e,
+        #15803d
+    );
+
+    box-shadow:
+        0 7px 18px rgba(22, 163, 74, 0.22);
+}
+
+.equals:hover {
+    box-shadow:
+        0 12px 25px rgba(22, 163, 74, 0.35);
+}
+
+
+/* =========================
+   ZERO
+========================= */
+
+.zero {
+    grid-column: span 2;
+}
+
+
+/* =========================
+   KEYBOARD FOCUS
+========================= */
+
+button:focus-visible {
+    outline: 2px solid rgba(96, 165, 250, 0.8);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   ENTRANCE ANIMATION
+========================= */
+
+@keyframes calculatorEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 420px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .calculator {
+        width: 100%;
+
+        max-width: 370px;
+
+        padding: 17px;
+
+        border-radius: 25px;
+    }
+
+    .display {
+        min-height: 115px;
+
+        padding: 18px;
+
+        border-radius: 20px;
+    }
+
+    #current-display {
+        font-size: 35px;
+    }
+
+    #previous-display {
+        font-size: 14px;
+    }
+
+    .buttons {
+        gap: 9px;
+    }
+
+    button {
+        height: 59px;
+
+        border-radius: 16px;
+
+        font-size: 18px;
+    }
+}
