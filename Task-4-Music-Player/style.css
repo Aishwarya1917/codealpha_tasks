@@ -1,0 +1,838 @@
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(124, 58, 237, 0.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(236, 72, 153, 0.15),
+            transparent 30%
+        ),
+
+        #09090b;
+
+    color: #f4f4f5;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    width: min(100% - 40px, 1050px);
+
+    height: 80px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 25px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #a78bfa;
+}
+
+.header-text {
+    color: #71717a;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.music-app {
+    width: min(100% - 30px, 850px);
+
+    margin: 30px auto 80px;
+}
+
+
+/* =========================================================
+   PLAYER CARD
+========================================================= */
+
+.player-card {
+    width: 100%;
+
+    padding: 45px;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 28px;
+
+    background: rgba(17, 17, 20, 0.78);
+
+    backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ALBUM SECTION
+========================================================= */
+
+.album-section {
+    width: 100%;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   ALBUM ART CONTAINER
+========================================================= */
+
+.album-art {
+    width: 270px;
+    height: 270px;
+
+    margin: 0 auto 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    background: #18181b;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45),
+        0 0 60px rgba(124, 58, 237, 0.12);
+}
+
+
+/* =========================================================
+   MAIN ALBUM COVER
+========================================================= */
+
+#album-cover {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 25px;
+
+    position: relative;
+
+    z-index: 1;
+
+    transition: transform 0.4s ease;
+}
+
+
+/* =========================================================
+   ROTATING VINYL DISC
+========================================================= */
+
+.album-disc {
+    width: 110px;
+    height: 110px;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    margin-left: -55px;
+    margin-top: -55px;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #111113 0px,
+            #111113 5px,
+            #29292d 6px,
+            #111113 8px
+        );
+
+    border: 7px solid #09090b;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.65),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+
+    z-index: 2;
+
+    animation: vinylRotate 7s linear infinite;
+
+    animation-play-state: paused;
+}
+
+
+/* =========================================================
+   VINYL CENTER
+========================================================= */
+
+.disc-center {
+    width: 24px;
+    height: 24px;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: #a78bfa;
+
+    border: 5px solid #18181b;
+
+    box-shadow:
+        0 0 15px rgba(167, 139, 250, 0.45);
+}
+
+
+/* =========================================================
+   PLAYING ROTATION
+========================================================= */
+
+.album-disc.playing {
+    animation-play-state: running;
+}
+
+@keyframes vinylRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   SONG INFORMATION
+========================================================= */
+
+.now-playing {
+    color: #a78bfa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+}
+
+#song-title {
+    font-size: clamp(25px, 5vw, 34px);
+
+    line-height: 1.2;
+
+    margin-bottom: 5px;
+
+    word-break: break-word;
+}
+
+#artist-name {
+    color: #a1a1aa;
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-section {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        40px
+        minmax(0, 1fr)
+        40px;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 40px;
+}
+
+.progress-section span {
+    color: #71717a;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   RANGE INPUT
+========================================================= */
+
+input[type="range"] {
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 100%;
+
+    height: 5px;
+
+    border-radius: 10px;
+
+    background: #27272a;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+/* Chrome / Edge / Safari */
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: #a78bfa;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(167, 139, 250, 0.5);
+}
+
+
+/* Firefox */
+
+input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #a78bfa;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(167, 139, 250, 0.5);
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin-top: 35px;
+}
+
+.control-btn,
+.play-btn {
+    border: none;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.control-btn {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #1f1f23;
+
+    color: #d4d4d8;
+
+    font-size: 18px;
+}
+
+.control-btn:hover {
+    background: #27272a;
+
+    color: white;
+
+    transform: scale(1.08);
+}
+
+.play-btn {
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: #a78bfa;
+
+    color: #09090b;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 15px 35px rgba(167, 139, 250, 0.25);
+}
+
+.play-btn:hover {
+    transform: scale(1.08);
+
+    background: #c4b5fd;
+}
+
+
+/* =========================================================
+   VOLUME
+========================================================= */
+
+.volume-section {
+    width: min(100%, 300px);
+
+    margin: 30px auto 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.volume-section span {
+    font-size: 14px;
+}
+
+.volume-section input {
+    flex: 1;
+}
+
+
+/* =========================================================
+   PLAYLIST
+========================================================= */
+
+.playlist-section {
+    width: 100%;
+
+    margin-top: 50px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    padding-top: 30px;
+}
+
+.playlist-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.playlist-header h2 {
+    font-size: 18px;
+}
+
+#playlist-count {
+    color: #71717a;
+
+    font-size: 11px;
+}
+
+.playlist {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   SONG ITEM
+========================================================= */
+
+.song-item {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 12px;
+
+    border: 1px solid transparent;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    overflow: hidden;
+}
+
+.song-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+
+    transform: translateX(4px);
+}
+
+.song-item.active {
+    background: rgba(167, 139, 250, 0.10);
+
+    border-color: rgba(167, 139, 250, 0.25);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15);
+}
+.playlist-cover {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    display: block;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.3);
+}
+/* =========================================================
+   SONG NUMBER
+========================================================= */
+
+.song-number {
+    width: 25px;
+
+    min-width: 25px;
+
+    color: #71717a;
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SONG INFORMATION
+========================================================= */
+
+.song-info {
+    min-width: 0;
+
+    flex: 1;
+}
+
+.song-title {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.song-artist {
+    color: #71717a;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   SONG PLAY ICON
+========================================================= */
+
+.song-play {
+    color: #a78bfa;
+
+    font-size: 14px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   GENERAL IMAGE PROTECTION
+========================================================= */
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        width: min(100% - 30px, 850px);
+
+        height: 70px;
+    }
+
+    .header-text {
+        display: none;
+    }
+
+    .music-app {
+        width: min(100% - 20px, 850px);
+
+        margin-top: 15px;
+    }
+
+    .player-card {
+        padding: 30px 20px;
+
+        border-radius: 22px;
+    }
+
+    .album-art {
+        width: 220px;
+        height: 220px;
+
+        border-radius: 20px;
+    }
+
+    #album-cover {
+        border-radius: 20px;
+    }
+
+    .album-disc {
+        width: 90px;
+        height: 90px;
+
+        margin-left: -45px;
+        margin-top: -45px;
+
+        border-width: 6px;
+    }
+
+    .disc-center {
+        width: 20px;
+        height: 20px;
+
+        border-width: 4px;
+    }
+
+    .progress-section {
+        grid-template-columns:
+            35px
+            minmax(0, 1fr)
+            35px;
+
+        gap: 8px;
+    }
+
+    .controls {
+        gap: 20px;
+    }
+
+    .control-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .play-btn {
+        width: 58px;
+        height: 58px;
+    }
+
+    .song-item {
+        gap: 10px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .music-app {
+        width: calc(100% - 16px);
+    }
+
+    .player-card {
+        padding: 25px 15px;
+    }
+
+    .album-art {
+        width: 190px;
+        height: 190px;
+
+        border-radius: 18px;
+    }
+
+    #album-cover {
+        border-radius: 18px;
+    }
+
+    .album-disc {
+        width: 78px;
+        height: 78px;
+
+        margin-left: -39px;
+        margin-top: -39px;
+
+        border-width: 5px;
+    }
+
+    .disc-center {
+        width: 17px;
+        height: 17px;
+
+        border-width: 3px;
+    }
+
+    .progress-section {
+        grid-template-columns:
+            32px
+            minmax(0, 1fr)
+            32px;
+
+        gap: 6px;
+    }
+
+    .controls {
+        gap: 15px;
+    }
+
+    .song-item {
+        padding: 11px;
+    }
+
+    .song-number {
+        width: 20px;
+
+        min-width: 20px;
+    }
+}
+/* =========================================================
+   MUSIC PLAYING GLOW
+========================================================= */
+
+body.music-playing {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(124, 58, 237, 0.30),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(236, 72, 153, 0.22),
+            transparent 32%
+        ),
+        #09090b;
+
+    transition: background 0.8s ease;
+}
+
